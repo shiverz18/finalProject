@@ -2,8 +2,6 @@ use std::{io, path};
 use std::rand;
 use std::rand::Rng;
 
-static LOW:int = 0;
-static HIGH:int = 3;
 
 
 fn load(filename: ~str) -> ~[~str] {
@@ -54,11 +52,12 @@ fn main() {
 		 			print(fmt!("%c", guess_char));
 		 			print(" ");
 				}
-				i += 1;
+				i += 1;	
        			 }
-		
+			println("");
 		}
 		else{
+			println("nope.");			
 			j += 1;
 		}
 	}
