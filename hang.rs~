@@ -33,7 +33,7 @@ fn main() {
 	let mut guesses :~[char] = "".iter().collect();
         let line = io::stdin().read_line();
 	let guess_char: char = line.char_at(0);
-	println(fmt!("%? guessed: ", guess_char));
+	println(fmt!("%?", "guessed: " + guess_char));
 	let mut has_char: bool = word.contains_char(guess_char);
 	println(fmt!("%?", has_char));	
 }
