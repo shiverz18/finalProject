@@ -89,30 +89,6 @@ fn load(filename: ~str) -> ~[~str] {
 	return ~[];
 }
 
-fn start(){
-	println("");
-	println("|H| ||  /|A\\  |N|\\ ||   /|G\\\\");	
-	println("|H|H|| /A|_\\\\ |N| \\||  |G|  __ ");
-	println("|H| || |A| || |N|  ||   \\|G/|  man ");
-	let mut myfile: ~str = "1.txt";
-	let read: Result<@Reader, ~str>;
-	read = io::file_reader(~path::Path(myfile));
-
-	if read.is_ok() {
-	let file = read.unwrap();
-	let text: ~[~str] = file.read_lines();
-        for i in range(0, text.len()) {	
-		println(text[i]);
-		
-        }
-	}
-	println("");
-	println("");
-
-	print("   ");	
-	println("");
-	println("");
-}
 
 fn isDuplicate(guess: char, guesses: ~[~str]) -> bool{
 	
