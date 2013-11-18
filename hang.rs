@@ -4,6 +4,23 @@ use std::rand::Rng;
 
 
 
+fn draw(level: uint){
+	let mut myfile: ~str = level.to_str();
+	myfile = myfile + ".txt";
+	  
+	let read: Result<@Reader, ~str>;
+	read = io::file_reader(~path::Path(myfile));
+
+	if read.is_ok() {
+	let file = read.unwrap();
+	let text: ~[~str] = file.read_lines();
+        for i in range(0, text.len()) {	
+		println(text[i]);
+        }
+	}
+	
+}
+
 fn load(filename: ~str) -> ~[~str] {
 	let read: Result<@Reader, ~str>;
 	read = io::file_reader(~path::Path(filename));
@@ -58,7 +75,7 @@ fn main() {
 	      
         
 	let mut j = 0;
-        let max_guess : uint = 8;
+        let max_guess : uint = 6;
 	while (j < max_guess){
 
 		let line = io::stdin().read_line();
@@ -67,7 +84,7 @@ fn main() {
 		guesses = guesses + ~['a', 'b'];
 		println(isDuplicate(guess_char).to_str());
 		let has_char: bool = word.contains_char(guess_char);
-	
+	        draw(j+1);
 		if (has_char){
        			let mut i = 0;	
 			while (i < word_len) {
@@ -86,5 +103,6 @@ fn main() {
 			j += 1;
 		}
 	}
+	println("Out of guesses - you lose.");
 
 }
