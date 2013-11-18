@@ -3,11 +3,11 @@
  __________
  |IIIIIIII|
   \I    I
-  |I   (_)        
-  |I	
-  |I
-  |I
-  |I
+  |I   (X)     	YOU LOSE :(
+  |I  _/|\_    
+  |I	|  
+  |I   / \
+  |I   | |
   |I
   |I
   |I
