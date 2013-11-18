@@ -135,6 +135,7 @@ fn main() {
         let max_guess : uint = 6;
 	let mut has_won: bool = false;
 	while (j < max_guess  && !has_won){
+		let mut is_valid: bool = false;
 		has_won = true;
 		for i in range(0,stateWord.len()) {
 			if(stateWord[i]== ~"_"){
@@ -146,7 +147,16 @@ fn main() {
 			break;
 		}
 		draw(j+1, stateWord.clone(), guesses.clone());
-		let line = io::stdin().read_line();
+		let mut line : ~str = ~"";		
+		while(!is_valid){
+		  line = io::stdin().read_line();
+		  if(line.len() > 0){
+			if(line.char_at(0).is_alphabetic()){
+				is_valid = true;
+			}
+             }
+		
+		}
 		let guess_char: char = line.char_at(0);
 		//println(fmt!("%? guessed: ", guess_char));
 		let has_char: bool = word.contains_char(guess_char);
