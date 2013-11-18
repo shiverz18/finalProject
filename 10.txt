@@ -3,12 +3,12 @@
  __________
  |IIIIIIII|
   \I    I
-  |I   (X)     	YOU LOSE :(
+  |I   (")
   |I  _/|\_    
   |I	|  
   |I   / \
   |I  _| |_
-  |I
+  |I   
   |I
   |I
  |IIIIIIIIIIIIIIIIIIIIIIIII|

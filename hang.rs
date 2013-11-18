@@ -111,6 +111,7 @@ fn isDuplicate(guess: char, guesses: ~[~str]) -> bool{
 fn main() {
 	let mut valid_level: bool = false;
 	let mut dif: ~str = ~"";
+	let mut max_guess : uint = 0;
 	println("   Welcome to Hangman ");
         println("   Enter number to select game level: ");
 	println("   (1) Normal");
@@ -121,9 +122,11 @@ fn main() {
 	  if(level.len() > 0){
 			if(level.char_at(0) == '1'){	
 				dif = ~"n_words.txt";
+				max_guess = 9;
 				valid_level = true;
 			}else if(level.char_at(0)=='2'){
 				dif = ~"x_words.txt";
+				max_guess = 7;
 				valid_level = true;
 			}
 		
@@ -153,7 +156,7 @@ fn main() {
         
 	let mut j = 0;
 	
-        let max_guess : uint = 6;
+        
 	let mut has_won: bool = false;
 	while (j < max_guess  && !has_won){
 		let mut is_valid: bool = false;
