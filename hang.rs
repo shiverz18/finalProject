@@ -1,4 +1,4 @@
-use std::{io, path};
+use std::{io, path, libc, os};
 use std::rand;
 use std::rand::Rng;
 
@@ -34,15 +34,15 @@ fn load(filename: ~str) -> ~[~str] {
 	return ~[];
 }
 
-fn isDuplicate(guess: char) -> bool{
-	for uint::range(0,guesses.length()) |b|{
-		let ch = copy(guesses[b]);
-		match ch {
-			guess => {return true;}
-			_ => {}
+fn isDuplicate(guess: char, guesses: ~[~str]) -> bool{
+	
+	for i in range(0,guesses.len()) {
+		if (guess.to_str() == guesses[i]){
+			return true;
 		}
 	}
 	return false;
+		
 }
 
 //fn searchChar(guess: char) -> bool{
@@ -62,27 +62,25 @@ fn main() {
 	
 	//Stores the guessed word
 	let mut i = 0;	
-	//let mut guessedWord: ~[~str] = ~[~""];
-	let mut guessedWord: ~[char] = ~[];
+	let mut guessedWord: ~[~str] = ~[];
 	while (i < word_len) {
-        	guessedWord = guessedWord + ~['_'];
+        	guessedWord = guessedWord + ~[~""];
 		i += 1;
         }
         println(guessedWord.to_str());
 	println(word);
 
-	let mut guesses: ~[char] = ~[];
+	let mut guesses: ~[~str] = ~[];
 	      
         
 	let mut j = 0;
         let max_guess : uint = 6;
 	while (j < max_guess){
 
-		let line = io::stdin().read_line();
-		let guess_char: char = line.char_at(0);
+		let mut line = io::stdin().read_line();
+		let mut guess_char: char = line.char_at(0);
 		println(fmt!("%? guessed: ", guess_char));
-		guesses = guesses + ~['a', 'b'];
-		println(isDuplicate(guess_char).to_str());
+		
 		let has_char: bool = word.contains_char(guess_char);
 	        draw(j+1);
 		if (has_char){
