@@ -109,8 +109,29 @@ fn isDuplicate(guess: char, guesses: ~[~str]) -> bool{
 
 
 fn main() {
+	let mut valid_level: bool = false;
+	let mut dif: ~str = ~"";
+	println("   Welcome to Hangman ");
+        println("   Enter number to select game level: ");
+	println("   (1) Normal");
+	println("   (2) Expert");
+	let mut level : ~str = ~"";		
+	while(!valid_level){
+	  level = io::stdin().read_line();
+	  if(level.len() > 0){
+			if(level.char_at(0) == '1'){	
+				dif = ~"n_words.txt";
+				valid_level = true;
+			}else if(level.char_at(0)=='2'){
+				dif = ~"x_words.txt";
+				valid_level = true;
+			}
+		
+             }
+
+	}
         let mut rng = rand::task_rng();
-	let dictionary: ~[~str] = load(~"words.txt");
+	let dictionary: ~[~str] = load(dif);
 	let max_size: uint = dictionary.len();
         let n: uint = rng.gen_integer_range(0u, max_size);
 	let word: ~str = dictionary[n];	
