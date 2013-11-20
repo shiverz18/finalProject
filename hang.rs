@@ -18,7 +18,6 @@ fn end(level: uint, state: ~[~str], word:~str){
 	let text: ~[~str] = file.read_lines();
         for i in range(0, text.len()) {	
 		println(text[i]);
-		
         }
 	}
 	println("");
@@ -36,7 +35,7 @@ fn end(level: uint, state: ~[~str], word:~str){
 }
 
 
-fn draw(level: uint, state: ~[~str], past_guess: ~[~str]){
+fn draw(level: uint, state: ~[~str], past_guess: ~[~str], lives: uint){
 	println("");
 	println("|H| ||  /|A\\  |N|\\ ||   /|G\\\\");	
 	println("|H|H|| /A|_\\\\ |N| \\||  |G|  __ ");
@@ -71,7 +70,7 @@ fn draw(level: uint, state: ~[~str], past_guess: ~[~str]){
 		print(past_guess[j]);
                 print(" ");
 	}
-	println("");
+	println(fmt!("   Lives Remaining: %s", lives.to_str()));
 	println("");
 	print("   Enter Next Guess: ");
 }
@@ -170,7 +169,8 @@ fn main() {
 			end(11, stateWord.clone(), word.clone());
 			break;
 		}
-		draw(j+1, stateWord.clone(), guesses.clone());
+		let lives: uint = max_guess - j;
+		draw(j+1, stateWord.clone(), guesses.clone(), lives);
 		let mut line : ~str = ~"";		
 		while(!is_valid){
 		  line = io::stdin().read_line();
