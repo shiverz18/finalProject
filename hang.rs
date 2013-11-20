@@ -100,10 +100,6 @@ fn isDuplicate(guess: char, guesses: ~[~str]) -> bool{
 		
 }
 
-//fn searchChar(guess: char) -> bool{
-	
-//}
-
 
 
 
