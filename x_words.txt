@@ -49,7 +49,7 @@ jawbreaker
 jaywalk
 jazzy
 jigsaw
-jiujitsu
+jujitsu
 jockey
 jovial
 joyful
@@ -75,9 +75,8 @@ ovary
 oxidize
 oxygen
 pajama
-peekaboo
 pixel
-pizazz
+pizzazz
 pneumonia
 polka
 quartz
@@ -88,7 +87,6 @@ rhubarb
 rickshaw
 schizophrenia
 sphinx
-spritz
 squawk
 subway
 swivel

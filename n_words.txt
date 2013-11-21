@@ -1,7 +1,7 @@
 about
 above
 after
-agian
+again
 began
 black
 block
@@ -42,7 +42,7 @@ which
 white
 would
 across
-afriad
+afraid
 always
 animal
 answer
@@ -142,7 +142,7 @@ backward
 barnyard
 baseball
 birthday
-buisness
+business
 cheerful
 complain
 complete
@@ -175,7 +175,7 @@ remember
 sidewalk
 sometime
 squirrel
-suprise
+surprise
 together
 tomorrow
 yourself
