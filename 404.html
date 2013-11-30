@@ -1,13 +1,20 @@
 <html>
   <head>
 <script type="text/javascript">
-function singlePlayer()
+function normal()
 {
-alert("ONE");
+alert("normal");
 }
-function multiPlayer()
+function expert()
 {
-alert("Two");
+alert("expert");
+}
+function contains(arr, value) {
+    var i = arr.length;
+    while (i--) {
+        if (arr[i] === value) return true;
+    }
+    return false;
 }
  
 </script>
@@ -20,8 +27,8 @@ alert("Two");
 
 
 
-<button onclick="singlePlayer()">Single Player</button>
-<button onclick="multiPlayer()">Multi Player</button>
+<button onclick="normal()">Normal</button>
+<button onclick="expert()">Expert</button>
 <h3>HANGMAN GAME</h3>
 <hr>
     Enter Next Guess: 
@@ -32,6 +39,7 @@ alert("Two");
 
     <script>
         var didClickIt = false;
+	var guesses = new Array(); //stores all the guesses
         document.getElementById("submitter").addEventListener("click",function(){
             // same as onclick, keeps the JS and HTML separate
             didClickIt = true;
@@ -42,11 +50,16 @@ alert("Two");
             if( didClickIt ) {
                 didClickIt = false;
                 // document.write causes silly problems, do this instead (or better yet, use a library like jQuery to do this stuff for you)
-                var o=document.getElementById("output"),v=document.getElementById("userInput").value;
+                var o=document.getElementById("output"),currentGuess=document.getElementById("userInput").value;
                 if(o.textContent!==undefined){
-                    o.textContent=v;
+			if(!contains(guesses, currentGuess)){
+		    		guesses[guesses.length]= currentGuess;
+				o.textContent = guesses;
+			}else{
+				o.textContent = "You already guessed this letter";
+			}
                 }else{
-                    o.innerText=v;
+                    o.innerText=currentGuess;
                 }
             }
         },500);
