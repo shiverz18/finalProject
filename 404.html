@@ -9,13 +9,24 @@ function expert()
 {
 alert("expert");
 }
-function contains(arr, value) {
+function duplicate(arr, value) {
     var i = arr.length;
     while (i--) {
         if (arr[i] === value) return true;
     }
     return false;
 }
+function alphaOnly(e) {
+
+  var code;
+  if (!e) var e = window.event;
+  if (e.keyCode) code = e.keyCode;
+  else if (e.which) code = e.which;
+  if ((code >= 48) && (code <= 57)) { return false; }
+  return true;
+
+}
+
  
 </script>
 </head>
@@ -32,7 +43,7 @@ function contains(arr, value) {
 <h3>HANGMAN GAME</h3>
 <hr>
     Enter Next Guess: 
-    <input type="text" id="userInput"> </input>
+    <input type="text" id="userInput" maxlength = 1 onkeypress="return alphaOnly(event);"> </input>
     <button id="submitter">Submit</button>
     <div id="output"></div>
 
@@ -51,12 +62,13 @@ function contains(arr, value) {
                 didClickIt = false;
                 // document.write causes silly problems, do this instead (or better yet, use a library like jQuery to do this stuff for you)
                 var o=document.getElementById("output"),currentGuess=document.getElementById("userInput").value;
+		currentGuess = currentGuess.toLowerCase();
                 if(o.textContent!==undefined){
-			if(!contains(guesses, currentGuess)){
+			if(!duplicate(guesses, currentGuess)){
 		    		guesses[guesses.length]= currentGuess;
 				o.textContent = guesses;
 			}else{
-				o.textContent = "You already guessed this letter";
+				o.textContent = "You already guessed this letter, your previous guesses are: " + guesses;
 			}
                 }else{
                     o.innerText=currentGuess;
