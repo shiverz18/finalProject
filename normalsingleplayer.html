@@ -1,0 +1,106 @@
+<html>
+  <head>
+
+</head>
+
+<body>
+
+<h3>HANGMAN GAME</h3>
+<hr>
+    Enter Next Guess: 
+    <input type="text" id="userInput" maxlength = 1 onkeypress="return alphaOnly(event);"> </input>
+    <button id="submitter">Submit</button>
+    
+    <div id="output"></div>
+    <h4 id = "blanksleft"></h4>
+
+    <script>
+	
+	var chosenWord = "";
+	setWord();
+	
+        var didClickIt = false;
+	var guesses = new Array(); //stores all the guesses
+        document.getElementById("submitter").addEventListener("click",function(){
+            // same as onclick, keeps the JS and HTML separate
+            didClickIt = true;
+        });
+
+        setInterval(function(){
+            // this is the closest you get to an infinite loop in JavaScript
+            if( didClickIt ) { //if submit was pressed
+                didClickIt = false;
+                initialize();
+		//will be the place guesses are stored
+                var divGuesses=document.getElementById("output");
+		//user input stored
+		var currentGuess=document.getElementById("userInput").value;
+		currentGuess = currentGuess.toLowerCase();
+		
+                if(divGuesses.textContent!==undefined){
+			if(!duplicate(guesses, currentGuess)){
+		    		guesses[guesses.length]= currentGuess;
+				divGuesses.textContent = guesses;
+			}else{
+				divGuesses.textContent = "You already guessed this letter, your previous guesses are: " + guesses;
+				
+			}
+                }else{
+                    divGuesses.innerText=currentGuess;
+                }
+            }
+        },500);
+</script>
+<hr>
+
+ 
+
+<script type = "text/javascript">
+
+
+function duplicate(arr, value) {
+    var i = arr.length;
+    while (i--) {
+        if (arr[i] === value) return true;
+    }
+    return false;
+}
+
+function alphaOnly(e) {
+
+  var code;
+  if (!e) var e = window.event;
+  if (e.keyCode) code = e.keyCode;
+  else if (e.which) code = e.which;
+  if ((code >= 48) && (code <= 57)) { return false; }
+  return true;
+
+}
+
+function initialize() {
+	
+	var docBlankID=document.getElementById("blanksleft");
+	var blanks = new Array();
+	for (var i = 0; i< chosenWord.length; i++){
+	blanks = blanks + "_ ";
+	}
+	docBlankID.innerHTML = blanks;
+}
+
+function setWord() {
+	var nnum = Math.round(Math.random()* actualn.length) + 1;
+	
+	chosenWord = actualn[nnum];
+	alert(chosenWord);
+	wordSelected = true;
+	
+}
+ 
+</script>
+
+<!--<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js" ></script>-->
+<script src = "n_words.js" > </script>
+
+</body>
+  
+</html>
