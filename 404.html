@@ -1,13 +1,37 @@
 <html>
   <head>
-<script type="text/javascript">
+<script type = "text/javascript">
+
+var chosenWord = "";
+var wordSelected = false;
 function normal()
 {
-alert("normal");
-}
+	if (!wordSelected){
+		
+	
+	var nnum = Math.round(Math.random()* actualn.length) + 1
+	//picks the normal word
+	chosenWord = actualn[nnum];
+	alert(chosenWord);
+	wordSelected = true;
+	}else{
+	alert("Word already selected, start guessing");
+	}
+	
+};
 function expert()
 {
-alert("expert");
+	if (!wordSelected){
+		
+	var xnum = Math.round(Math.random()* actualx.length) + 1
+	//picks the normal word
+	chosenWord = actualx[xnum];
+	alert(chosenWord);
+	wordSelected = true;
+	}else{
+	alert("Word already selected, start guessing");
+	}
+   
 }
 function duplicate(arr, value) {
     var i = arr.length;
@@ -26,7 +50,6 @@ function alphaOnly(e) {
   return true;
 
 }
-
  
 </script>
 </head>
@@ -89,7 +112,8 @@ function alphaOnly(e) {
             document.write(userInput);
         }
     </script>
-
+<!--<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js" ></script>-->
+<script src = "n_words.js" > </script>
 </body>
   
 </html>
