@@ -47,7 +47,7 @@
         <hr><hr>
         <div class="clear"></div></div>
   <div>
- <p style="text-align:center"><img src="file:///home/student/finalProject/hang_1.jpg" alt="hang_1"></p>
+ <p style="text-align:center"><img id = "hangImage" src="file:///home/student/finalProject/hang_1.jpg" alt="hang_1"></p>
 </div>
 <hr>
     <div id="show_single">
@@ -128,6 +128,7 @@
 	}
 	if (!goodGuess){
 		remGuesses--;//decrement remaining guesses
+		replaceImage();
 	}
 	updateBlanks(blank2);
 	}
@@ -148,25 +149,39 @@
 			return false;
 		}
 	}
+
+	function replaceImage(){
+		var picNumber = 8 - remGuesses + 1; 
+		var path = "file:///home/student/finalProject/hang_" + picNumber + ".jpg";
+		hangmanImg.src = path
+	}
+
+
+
+
 	//runs code when a guess is submitted
 	function submission(){
 		var divGuesses=document.getElementById("output");
 		var currentGuess=document.getElementById("userInput").value;
 		
 		currentGuess = currentGuess.toLowerCase();
+		document.getElementById("userInput").value = "";
 
 		if (remGuesses > 0){
 			
 			if(!duplicate(guesses, currentGuess)){
 		    		
 				wordContains(currentGuess);
+				currentBlank = docBlankID.textContent;
 				if (win()){
 					remGuesses = 0;
 					docBlankID.textContent = "YOU WIN: The Word Was " + chosenWord;
+					divGuesses.textContent = "";
 
 				}else if (lose()){
 					remGuesses = 0;
 					docBlankID.textContent = "SORRY YOU LOST: The Word was " + chosenWord;
+					divGuesses.textContent = "Previous Guesses: " + guesses;
 				}else{
 					guesses[guesses.length]= currentGuess;
 					divGuesses.textContent = "Previous Guesses: " + guesses;
@@ -187,8 +202,9 @@
 	var docBlankID=document.getElementById("blanksleft");
 	var guesses = new Array();
 	var blanks = new Array();
-	var remGuesses = 9;
+	var remGuesses = 8;
 	var currentBlank = docBlankID.textContent;
+	var hangmanImg = document.getElementById("hangImage");
         setWord();
 	initialize();
 	document.getElementById("submitter").addEventListener("click",submission);
