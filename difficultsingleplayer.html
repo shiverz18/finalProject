@@ -46,8 +46,8 @@
     <h1 id="title">HangMan</h1>
         <hr><hr>
         <div class="clear"></div></div>
-  <div>
- <p style="text-align:center"><img src="./hang_1.jpg" alt="hang_1"></p>
+ <div>
+ <p style="text-align:center"><img id = "hangImage" src="./hang_1.jpg" alt="hang_1"></p>
 </div>
     <div id="show_single">
     Enter Next Guess: 
@@ -56,11 +56,170 @@
    
     <div id="output"></div>
     <h4 id = "blanksleft"></h4>
+    <div id="output2"></div>
 
-     </div>
+     
+     <script src = "x_words.js" > </script>
+
+
+    
+
+    <script>
+        
+        
+        function setWord() {
+        var nnum = Math.round(Math.random()* actualx.length) + 1;
+        
+        chosenWord = actualx[nnum];
+        //alert(chosenWord);
+        wordSelected = true;
+        }
+        //show initial blanks _ _
+        function initialize() {
+        
+        for (var i = 0; i< chosenWord.length; i++){
+                blanks = blanks + "_ ";
+        }
+        docBlankID.innerHTML = blanks;
+        }
+
+        // update which letters are complete and which are not
+        function updateBlanks(blankarray){
+        
+        docBlankID.innerHTML = blankarray;
+        }
+
+        //checks for duplicate guesses
+        function duplicate(arr, value) {
+            var i = arr.length;
+            while (i--) {
+                if (arr[i] === value) return true;
+            }
+            return false;
+        }
+
+        //alphabets only can be typed
+        function alphaOnly(e) {
+
+         var code;
+          if (!e) var e = window.event;
+          if (e.keyCode) code = e.keyCode;
+          else if (e.which) code = e.which;
+          if ((code >= 48) && (code <= 57)) { return false; }
+          return true;
+
+        }
+
+        //checks if letter is contained in word, also called the function to update blanks
+        function wordContains(aGuess){
+        
+        var blank2 = new Array();
+        currentBlank = docBlankID.textContent;
+        var goodGuess = false;
+
+        for (var i = 0; i< chosenWord.length; i++){
+                if (chosenWord.charAt(i) == aGuess){
+                        goodGuess = true;
+                        blank2 = blank2 + aGuess + " ";
+                        
+                }else{
+                        blank2 = blank2 + currentBlank.charAt(i*2) + " ";
+                }
+        }
+        if (!goodGuess){
+                xremGuesses--;//decrement remaining guesses
+                replaceImage();
+        }
+        updateBlanks(blank2);
+        }
+        // check to see if you won
+        function win(){
+                if (currentBlank.indexOf("_")<0){
+                        var path = "./hang_win.jpg";
+			hangmanImg.src = path;
+                        return true;
+                }else{
+                        return false;
+                }        
+        }
+        // check to see if you lost
+        function lose(){
+                if (xremGuesses<=0 && currentBlank.indexOf("_")>=0){
+			var path = "./hang_10.jpg";
+			hangmanImg.src = path;
+                        return true;
+                }else{
+                        return false;
+                }
+        }
+
+        function replaceImage(){
+                var picNumber = 8 - xremGuesses;
+                var path = "./hang_" + picNumber + ".jpg";
+                hangmanImg.src = path
+        }
+
+
+
+
+        //runs code when a guess is submitted
+        function submission(){
+                var divGuesses=document.getElementById("output");
+		var numGuesses=document.getElementById("output2");
+                var currentGuess=document.getElementById("userInput").value;
+                
+                currentGuess = currentGuess.toLowerCase();
+                document.getElementById("userInput").value = "";
+
+                if (xremGuesses > 0){
+                        
+                        if(!duplicate(guesses, currentGuess)){
+                                 
+                                wordContains(currentGuess);
+                                currentBlank = docBlankID.textContent;
+                                if (win()){
+                                        xremGuesses = 0;
+                                        docBlankID.textContent = "CONGRATULATIONS!";
+                                        divGuesses.textContent = "";
+
+                                }else if (lose()){
+                                        xremGuesses = 0;
+                                        docBlankID.textContent = "SORRY YOU LOST: The Word was " + chosenWord;
+                                        divGuesses.textContent = "Previous Guesses: " + guesses;
+					numGuesses.textContent = "";
+                                }else{
+                                        guesses[guesses.length]= currentGuess;
+                                        divGuesses.textContent = "Previous Guesses: " + guesses;
+					numGuesses.textContent = "(Lives Remaining: " + xremGuesses + ")";
+                                }
+                                
+                        }else{
+                                divGuesses.textContent = "You already guessed this letter, your previous guesses are: " + guesses;
+                                
+                        }
+
+                }
+            }
+        
+
+        //globals
+        
+        var chosenWord = "";
+        var docBlankID=document.getElementById("blanksleft");
+        var guesses = new Array();
+        var blanks = new Array();
+        var xremGuesses = 7;
+        var currentBlank = docBlankID.textContent;
+        var hangmanImg = document.getElementById("hangImage");
+        setWord();
+        initialize();
+        document.getElementById("submitter").addEventListener("click",submission);
+
+</script>
+  </body>
    <footer class="footer"><hr>
         Copyright &copy; RustyGates 2013
       </footer>
-    </div>
-  </body>
+    
+
 </html>
