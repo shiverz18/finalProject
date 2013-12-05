@@ -1,6 +1,5 @@
 <html>
   <head>
-    <script src = "path.js" > </script>
     <title>Hangman</title>
     <link rel="stylesheet" href="style.css.less">
 </head>
@@ -9,10 +8,7 @@
     <div class="title_bar">
    <ul id="menu">  
           
-        <script>var user_path = JSFileParentPath + "normalsingleplayer.html";
-                var a = document.getElementById('normal_link');
-                a.setAttribute("href", user_path);
-        </script>
+      
         <li class="menu_right"><a href="#" class="drop">Single Player</a>  
           
             <div class="dropdown_1column align_right">  
@@ -51,13 +47,21 @@
         <hr><hr>
         <div class="clear"></div></div>
   <div>
- <p style="text-align:center"><img src="file:///home/cmg3yb/finalProject/hang.jpg" alt="WELCOME_IMAGE"></p>
+ <p style="text-align:center"><img src="file:///home/cmg3yb/finalProject/hang_1.jpg" alt="hang_1"></p>
 </div>
+<hr>
+    <div id="show_single">
+    Enter Next Guess: 
+    <input type="text" id="userInput" maxlength = 1 onkeypress="return alphaOnly(event);"> </input>
+    <button id="submitter">Submit</button>
+   
+    <div id="output"></div>
+    <h4 id = "blanksleft"></h4>
 
- 
-</body>
+     </div>
    <footer class="footer"><hr>
         Copyright &copy; RustyGates 2013
       </footer>
- 
+    </div>
+  </body>
 </html>

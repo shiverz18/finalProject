@@ -42,20 +42,28 @@
         </li>
     </ul> 
     <div class="clear"></div></div>
- <div class="hang"><br><br><br><br>
+ <div class="hang"><br>
     <h1 id="title">HangMan</h1>
         <hr><hr>
         <div class="clear"></div></div>
-<h3>HANGMAN GAME</h3>
+  <div>
+ <p style="text-align:center"><img src="file:///home/cmg3yb/finalProject/hang_1.jpg" alt="hang_1"></p>
+</div>
 <hr>
+    <div id="show_single">
     Enter Next Guess: 
     <input type="text" id="userInput" maxlength = 1 onkeypress="return alphaOnly(event);"> </input>
     <button id="submitter">Submit</button>
-    
+   
     <div id="output"></div>
     <h4 id = "blanksleft"></h4>
+<<<<<<< HEAD
 	
 <script src = "n_words2.js" > </script>
+=======
+
+     </div>
+>>>>>>> 0f95283af7b6957ee4bcf9c1404255145dc22db1
     <script>
 	var blanks = new Array();
 
@@ -137,6 +145,29 @@
 				divGuesses.textContent = "You already guessed this letter, your previous guesses are: " + guesses;
 				
 			}
+<<<<<<< HEAD
+=======
+                }else{
+                    divGuesses.innerText=currentGuess;
+                }
+            }
+        },500);
+</script>
+
+
+ 
+
+<script type = "text/javascript">
+
+
+function duplicate(arr, value) {
+    var i = arr.length;
+    while (i--) {
+        if (arr[i] === value) return true;
+    }
+    return false;
+}
+>>>>>>> 0f95283af7b6957ee4bcf9c1404255145dc22db1
 
 
 		}
@@ -168,9 +199,8 @@
 
 
 </body>
-   <footer class="footer">
+   <footer class="footer"><hr>
         Copyright &copy; RustyGates 2013
       </footer>
-    </div>
-  </body>
+  
 </html>
