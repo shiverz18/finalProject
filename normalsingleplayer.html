@@ -6,41 +6,41 @@
 
 <body>
     <div class="title_bar">
-   <ul id="menu">  
+   <ul id="menu">
           
       
-        <li class="menu_right"><a href="#" class="drop">Single Player</a>  
+        <li class="menu_right"><a href="#" class="drop">Single Player</a>
           
-            <div class="dropdown_1column align_right">  
+            <div class="dropdown_1column align_right">
               
-                    <div class="col_1">  
+                    <div class="col_1">
                       
-                        <ul class="col_1">  
-                            <li><a href="file:///home/student/finalProject/normalsingleplayer.html">Normal</a></li>  
-                            <li><a href="file:///home/student/finalProject/difficultsingleplayer.html">Difficult</a></li>  
-                        </ul>     
+                        <ul class="col_1">
+                            <li><a href="file:///home/student/finalProject/normalsingleplayer.html">Normal</a></li>
+                            <li><a href="file:///home/student/finalProject/difficultsingleplayer.html">Difficult</a></li>
+                        </ul>
                            
-                    </div>  
+                    </div>
                       
-            </div>  
+            </div>
               
-        </li>  
-
-<li class="menu_right"><a href="#" class="drop">Two Player</a>  
-          
-            <div class="dropdown_1column align_right">  
-              
-                    <div class="col_1">  
-                      
-                        <ul class="simple">  
-                            <li><a href="file:///home/student/finalProject/versestwoplayer.html"">Verses</a></li>  
-                            <li><a href="file:///home/student/finalProject/adversarialtwoplayer.html">Adversarial</a></li>
-                        </ul>     
-                    </div>    
-            </div>  
-        </li>         
         </li>
-    </ul> 
+
+<li class="menu_right"><a href="#" class="drop">Two Player</a>
+          
+            <div class="dropdown_1column align_right">
+              
+                    <div class="col_1">
+                      
+                        <ul class="simple">
+                            <li><a href="file:///home/student/finalProject/versestwoplayer.html"">Verses</a></li>
+                            <li><a href="file:///home/student/finalProject/adversarialtwoplayer.html">Adversarial</a></li>
+                        </ul>
+                    </div>
+            </div>
+        </li>
+        </li>
+    </ul>
     <div class="clear"></div></div>
  <div class="hang"><br>
     <h1 id="title">HangMan</h1>
@@ -51,163 +51,168 @@
 </div>
 <hr>
     <div id="show_single">
-    Enter Next Guess: 
+    Enter Next Guess:
     <input type="text" id="userInput" maxlength = 1 onkeypress="return alphaOnly(event);"> </input>
     <button id="submitter">Submit</button>
    
     <div id="output"></div>
     <h4 id = "blanksleft"></h4>
+    <div id="output2"></div>
 
-	
+        
 <script src = "n_words2.js" > </script>
 
 
     
 
     <script>
-	
-	
-	function setWord() {
-	var nnum = Math.round(Math.random()* actualn.length) + 1;
-	
-	chosenWord = actualn[nnum];
-	alert(chosenWord);
-	wordSelected = true;
-	}
-	//show initial blanks _ _ 
-	function initialize() {
-	
-	for (var i = 0; i< chosenWord.length; i++){
-		blanks = blanks + "_ ";
-	}
-	docBlankID.innerHTML = blanks;
-	}
+        
+        
+        function setWord() {
+        var nnum = Math.round(Math.random()* actualn.length) + 1;
+        
+        chosenWord = actualn[nnum];
+        alert(chosenWord);
+        wordSelected = true;
+        }
+        //show initial blanks _ _
+        function initialize() {
+        
+        for (var i = 0; i< chosenWord.length; i++){
+                blanks = blanks + "_ ";
+        }
+        docBlankID.innerHTML = blanks;
+        }
 
-	// update which letters are complete and which are not
-	function updateBlanks(blankarray){
-	
-	docBlankID.innerHTML = blankarray;
-	}
+        // update which letters are complete and which are not
+        function updateBlanks(blankarray){
+        
+        docBlankID.innerHTML = blankarray;
+        }
 
-	//checks for duplicate guesses
-	function duplicate(arr, value) {
-    	var i = arr.length;
-   	 while (i--) {
-       	 if (arr[i] === value) return true;
-    	}
-    	return false;
-	}
+        //checks for duplicate guesses
+        function duplicate(arr, value) {
+            var i = arr.length;
+            while (i--) {
+                if (arr[i] === value) return true;
+            }
+            return false;
+        }
 
-	//alphabets only can be typed
-	function alphaOnly(e) {
+        //alphabets only can be typed
+        function alphaOnly(e) {
 
- 	var code;
-  	if (!e) var e = window.event;
-  	if (e.keyCode) code = e.keyCode;
-  	else if (e.which) code = e.which;
-  	if ((code >= 48) && (code <= 57)) { return false; }
-  	return true;
+         var code;
+          if (!e) var e = window.event;
+          if (e.keyCode) code = e.keyCode;
+          else if (e.which) code = e.which;
+          if ((code >= 48) && (code <= 57)) { return false; }
+          return true;
 
-	}
+        }
 
-	//checks if letter is contained in word, also called the function to update blanks
-	function wordContains(aGuess){
-	
-	var blank2 = new Array();
-	currentBlank = docBlankID.textContent;
-	var goodGuess = false;
+        //checks if letter is contained in word, also called the function to update blanks
+        function wordContains(aGuess){
+        
+        var blank2 = new Array();
+        currentBlank = docBlankID.textContent;
+        var goodGuess = false;
 
-	for (var i = 0; i< chosenWord.length; i++){
-		if (chosenWord.charAt(i) == aGuess){
-			goodGuess = true;
-			blank2 = blank2 + aGuess + " ";
-			
-		}else{
-			blank2 = blank2 + currentBlank.charAt(i*2) + " ";
-		}
-	}
-	if (!goodGuess){
-		remGuesses--;//decrement remaining guesses
-		replaceImage();
-	}
-	updateBlanks(blank2);
-	}
-	// check to see if you won
-	function win(){
-		if (currentBlank.indexOf("_")<0){
-			
-			return true;
-		}else{
-			return false;
-		}	
-	}
-	// check to see if you lost
-	function lose(){
-		if (remGuesses<=0 && currentBlank.indexOf("_")>=0){
-			return true;
-		}else{
-			return false;
-		}
-	}
+        for (var i = 0; i< chosenWord.length; i++){
+                if (chosenWord.charAt(i) == aGuess){
+                        goodGuess = true;
+                        blank2 = blank2 + aGuess + " ";
+                        
+                }else{
+                        blank2 = blank2 + currentBlank.charAt(i*2) + " ";
+                }
+        }
+        if (!goodGuess){
+                remGuesses--;//decrement remaining guesses
+                replaceImage();
+        }
+        updateBlanks(blank2);
+        }
+        // check to see if you won
+        function win(){
+                if (currentBlank.indexOf("_")<0){
+                        var path = "file:///home/student/finalProject/hang_win.jpg";
+			hangmanImg.src = path
+                        return true;
+                }else{
+                        return false;
+                }        
+        }
+        // check to see if you lost
+        function lose(){
+                if (remGuesses<=0 && currentBlank.indexOf("_")>=0){
+                        return true;
+                }else{
+                        return false;
+                }
+        }
 
-	function replaceImage(){
-		var picNumber = 8 - remGuesses + 1; 
-		var path = "file:///home/student/finalProject/hang_" + picNumber + ".jpg";
-		hangmanImg.src = path
-	}
+        function replaceImage(){
+                var picNumber = 8 - remGuesses + 2;
+                var path = "file:///home/student/finalProject/hang_" + picNumber + ".jpg";
+                hangmanImg.src = path
+        }
 
 
 
 
-	//runs code when a guess is submitted
-	function submission(){
-		var divGuesses=document.getElementById("output");
-		var currentGuess=document.getElementById("userInput").value;
-		
-		currentGuess = currentGuess.toLowerCase();
-		document.getElementById("userInput").value = "";
+        //runs code when a guess is submitted
+        function submission(){
+                var divGuesses=document.getElementById("output");
+		var numGuesses=document.getElementById("output2");
+                var currentGuess=document.getElementById("userInput").value;
+                
+                currentGuess = currentGuess.toLowerCase();
+                document.getElementById("userInput").value = "";
 
-		if (remGuesses > 0){
-			
-			if(!duplicate(guesses, currentGuess)){
-		    		
-				wordContains(currentGuess);
-				currentBlank = docBlankID.textContent;
-				if (win()){
-					remGuesses = 0;
-					docBlankID.textContent = "YOU WIN: The Word Was " + chosenWord;
-					divGuesses.textContent = "";
+                if (remGuesses > 0){
+                        
+                        if(!duplicate(guesses, currentGuess)){
+                                 
+                                wordContains(currentGuess);
+                                currentBlank = docBlankID.textContent;
+                                if (win()){
+                                        remGuesses = 0;
+                                        docBlankID.textContent = "CONGRATULATIONS!";
+                                        divGuesses.textContent = "";
 
-				}else if (lose()){
-					remGuesses = 0;
-					docBlankID.textContent = "SORRY YOU LOST: The Word was " + chosenWord;
-					divGuesses.textContent = "Previous Guesses: " + guesses;
-				}else{
-					guesses[guesses.length]= currentGuess;
-					divGuesses.textContent = "Previous Guesses: " + guesses;
-				}
-				
-			}else{
-				divGuesses.textContent = "You already guessed this letter, your previous guesses are: " + guesses;
-				
-			}
+                                }else if (lose()){
+                                        remGuesses = 0;
+                                        docBlankID.textContent = "SORRY YOU LOST: The Word was " + chosenWord;
+                                        divGuesses.textContent = "Previous Guesses: " + guesses;
+					numGuesses.textContent = "";
+                                }else{
+                                        guesses[guesses.length]= currentGuess;
+                                        divGuesses.textContent = "Previous Guesses: " + guesses;
+					numGuesses.textContent = "(Lives Remaining: " + remGuesses + ")";
+                                }
+                                
+                        }else{
+                                divGuesses.textContent = "You already guessed this letter, your previous guesses are: " + guesses;
+                                
+                        }
 
                 }
             }
-	
+        
 
-	//globals
-	
- 	var chosenWord = "";
-	var docBlankID=document.getElementById("blanksleft");
-	var guesses = new Array();
-	var blanks = new Array();
-	var remGuesses = 8;
-	var currentBlank = docBlankID.textContent;
-	var hangmanImg = document.getElementById("hangImage");
+        //globals
+        
+         var chosenWord = "";
+        var docBlankID=document.getElementById("blanksleft");
+        var guesses = new Array();
+        var blanks = new Array();
+        var remGuesses = 9;
+        var currentBlank = docBlankID.textContent;
+        var hangmanImg = document.getElementById("hangImage");
         setWord();
-	initialize();
-	document.getElementById("submitter").addEventListener("click",submission);
+        initialize();
+        document.getElementById("submitter").addEventListener("click",submission);
 
 </script>
 
