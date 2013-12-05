@@ -65,7 +65,7 @@
     
 
     <script>
-	var blanks = new Array();
+	
 	
 	function setWord() {
 	var nnum = Math.round(Math.random()* actualn.length) + 1;
@@ -78,7 +78,7 @@
 	function initialize() {
 	
 	for (var i = 0; i< chosenWord.length; i++){
-		blanks = blanks + "_,";
+		blanks = blanks + "_ ";
 	}
 	docBlankID.innerHTML = blanks;
 	}
@@ -110,44 +110,73 @@
 
 	}
 
-	//checks if letter is contained in word
+	//checks if letter is contained in word, also called the function to update blanks
 	function wordContains(aGuess){
+	
 	var blank2 = new Array();
+	currentBlank = docBlankID.textContent;
+	var goodGuess = false;
+
 	for (var i = 0; i< chosenWord.length; i++){
 		if (chosenWord.charAt(i) == aGuess){
-			blanks[1] = 'g';
-			alert(blanks[1]);
-			//blank2 = blank2 + aGuess + " ";
+			goodGuess = true;
+			blank2 = blank2 + aGuess + " ";
 			
 		}else{
-			//blank2 = blank2 + "_ ";
+			blank2 = blank2 + currentBlank.charAt(i*2) + " ";
 		}
 	}
-	updateBlanks(blanks);
-	
+	if (!goodGuess){
+		remGuesses--;//decrement remaining guesses
 	}
-
+	updateBlanks(blank2);
+	}
+	// check to see if you won
+	function win(){
+		if (currentBlank.indexOf("_")<0){
+			
+			return true;
+		}else{
+			return false;
+		}	
+	}
+	// check to see if you lost
+	function lose(){
+		if (remGuesses<=0 && currentBlank.indexOf("_")>=0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	//runs code when a guess is submitted
 	function submission(){
 		var divGuesses=document.getElementById("output");
 		var currentGuess=document.getElementById("userInput").value;
+		
 		currentGuess = currentGuess.toLowerCase();
 
 		if (remGuesses > 0){
 			
 			if(!duplicate(guesses, currentGuess)){
-		    		guesses[guesses.length]= currentGuess;
-				divGuesses.textContent = "Previous Guesses: " + guesses;
-				remGuesses--;
+		    		
 				wordContains(currentGuess);
-				
+				if (win()){
+					remGuesses = 0;
+					docBlankID.textContent = "YOU WIN: The Word Was " + chosenWord;
+
+				}else if (lose()){
+					remGuesses = 0;
+					docBlankID.textContent = "SORRY YOU LOST: The Word was " + chosenWord;
+				}else{
+					guesses[guesses.length]= currentGuess;
+					divGuesses.textContent = "Previous Guesses: " + guesses;
+				}
 				
 			}else{
 				divGuesses.textContent = "You already guessed this letter, your previous guesses are: " + guesses;
 				
 			}
 
-                }else{
-                    divGuesses.innerText=currentGuess;
                 }
             }
 	
@@ -157,10 +186,13 @@
  	var chosenWord = "";
 	var docBlankID=document.getElementById("blanksleft");
 	var guesses = new Array();
+	var blanks = new Array();
 	var remGuesses = 9;
+	var currentBlank = docBlankID.textContent;
         setWord();
 	initialize();
 	document.getElementById("submitter").addEventListener("click",submission);
+
 </script>
 
 
