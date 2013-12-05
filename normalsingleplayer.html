@@ -33,8 +33,8 @@
                     <div class="col_1">  
                       
                         <ul class="simple">  
-                            <li><a href="file:///home/cmg3yb/finalProject/versestwoplayer.html"">Verses</a></li>  
-                            <li><a href="file:///home/cmg3yb/finalProject/adversarialtwoplayer.html">Adversarial</a></li>
+                            <li><a href="file:///home/student/finalProject/versestwoplayer.html"">Verses</a></li>  
+                            <li><a href="file:///home/student/finalProject/adversarialtwoplayer.html">Adversarial</a></li>
                         </ul>     
                     </div>    
             </div>  
@@ -47,7 +47,7 @@
         <hr><hr>
         <div class="clear"></div></div>
   <div>
- <p style="text-align:center"><img src="file:///home/cmg3yb/finalProject/hang_1.jpg" alt="hang_1"></p>
+ <p style="text-align:center"><img src="file:///home/student/finalProject/hang_1.jpg" alt="hang_1"></p>
 </div>
 <hr>
     <div id="show_single">
@@ -57,16 +57,16 @@
    
     <div id="output"></div>
     <h4 id = "blanksleft"></h4>
-<<<<<<< HEAD
+
 	
 <script src = "n_words2.js" > </script>
-=======
 
-     </div>
->>>>>>> 0f95283af7b6957ee4bcf9c1404255145dc22db1
+
+    
+
     <script>
 	var blanks = new Array();
-
+	
 	function setWord() {
 	var nnum = Math.round(Math.random()* actualn.length) + 1;
 	
@@ -145,57 +145,24 @@
 				divGuesses.textContent = "You already guessed this letter, your previous guesses are: " + guesses;
 				
 			}
-<<<<<<< HEAD
-=======
+
                 }else{
                     divGuesses.innerText=currentGuess;
                 }
             }
-        },500);
-</script>
+	
 
-
- 
-
-<script type = "text/javascript">
-
-
-function duplicate(arr, value) {
-    var i = arr.length;
-    while (i--) {
-        if (arr[i] === value) return true;
-    }
-    return false;
-}
->>>>>>> 0f95283af7b6957ee4bcf9c1404255145dc22db1
-
-
-		}
-		
-	}
 	//globals
-	var chosenWord = "";
+	
+ 	var chosenWord = "";
 	var docBlankID=document.getElementById("blanksleft");
-	
-	var guesses = new Array(); //stores all the guesses
+	var guesses = new Array();
 	var remGuesses = 9;
-
-	setWord();
+        setWord();
 	initialize();
-        var didClickIt = false;
-	
-        document.getElementById("submitter").addEventListener("click",submission);
-            // same as onclick, keeps the JS and HTML separate
-            //didClickIt = true;
-        //});
-
-       
+	document.getElementById("submitter").addEventListener("click",submission);
 </script>
-<hr>
 
-
-
-<!--<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js" ></script>-->
 
 
 </body>
