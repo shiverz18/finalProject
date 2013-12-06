@@ -1,6 +1,42 @@
 @default-font: 'Veranda', sans-serif;
 
+#show_single {
+ text-align: center;
+}
 
+#player1 {
+  float:left;
+  margin-right: 30px;
+  margin-left: 100px;
+}
+
+#player2 {
+  float: right;
+  margin-left: 30px;
+  margin-right: 100px;
+}
+
+#game{
+  margin:0;
+  padding:0;
+}
+ 
+#title{
+  font-family: Terminal;
+  text-align: center;
+  font-size: 100px;
+  font-variant: small-caps;
+  margin-top: 20px;
+  margin-bottom: 40px;
+   -webkit-text-stroke: 1px black;
+   color: white;
+   text-shadow:
+       3px 3px 0 #000,
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
+}
 
 body {
   padding: 0;
@@ -131,16 +167,10 @@ hang{
     }  
       
     .dropdown_1column {width: 140px;}  
-    .dropdown_2columns {width: 280px;}  
-    .dropdown_3columns {width: 420px;}  
-    .dropdown_4columns {width: 560px;}  
-    .dropdown_5columns {width: 700px;}  
+
       
     #menu li:hover .dropdown_1column,   
-    #menu li:hover .dropdown_2columns,   
-    #menu li:hover .dropdown_3columns,  
-    #menu li:hover .dropdown_4columns,  
-    #menu li:hover .dropdown_5columns {  
+ {  
         left:-1px;  
         top:auto;  
     }  
@@ -148,10 +178,7 @@ hang{
     /* Columns */  
       
     .col_1,  
-    .col_2,  
-    .col_3,  
-    .col_4,  
-    .col_5 {  
+{  
         display:inline;  
         float: left;  
         position: relative;  
@@ -159,11 +186,7 @@ hang{
         margin-right: 5px;  
     }  
     .col_1 {width:130px;}  
-    .col_2 {width:270px;}  
-    .col_3 {width:410px;}  
-    .col_4 {width:550px;}  
-    .col_5 {width:690px;}  
-      
+
     /* Right alignment */  
       
     #menu .menu_right {  
@@ -191,25 +214,7 @@ hang{
         text-align:left;  
         text-shadow: 1px 1px 1px #FFFFFF;  
     }  
-    #menu h2 {  
-        font-size:21px;  
-        font-weight:400;  
-        letter-spacing:-1px;  
-        margin:7px 0 14px 0;  
-        padding-bottom:14px;  
-        border-bottom:1px solid #666666;  
-    }  
-    #menu h3 {  
-        font-size:14px;  
-        margin:7px 0 14px 0;  
-        padding-bottom:7px;  
-        border-bottom:1px solid #888888;  
-    }  
-    #menu p {  
-        line-height:18px;  
-        margin:0 0 10px 0;  
-    }  
-      
+
     #menu li:hover div a {  
         font-size:12px;  
         color:#015b86;  
@@ -374,40 +379,4 @@ footer {
   clear: both;
 }
 
-#show_single {
- text-align: center;
-}
 
-#player1 {
-  float:left;
-  margin-right: 30px;
-  margin-left: 100px;
-}
-
-#player2 {
-  float: right;
-  margin-left: 30px;
-  margin-right: 100px;
-}
-
-#game{
-  margin:0;
-  padding:0;
-}
- 
-#title{
-  font-family: Terminal;
-  text-align: center;
-  font-size: 100px;
-  font-variant: small-caps;
-  margin-top: 20px;
-  margin-bottom: 40px;
-   -webkit-text-stroke: 1px black;
-   color: white;
-   text-shadow:
-       3px 3px 0 #000,
-     -1px -1px 0 #000,  
-      1px -1px 0 #000,
-      -1px 1px 0 #000,
-       1px 1px 0 #000;
-}
