@@ -16,11 +16,11 @@ You can download both games by cloning our repository on GitHub:
 
 	git clone https://github.com/sds3cd/finalProject.git
 
-The Rust version of hangman is terminal based.    Please note that game was created using version Rust 0.8 and will only compile if you are running the same version on our machine.  To play the Rust version, run the following commands in the terminal in the /finalProject directory:
+The Rust version of hangman is terminal based.    Please note that the game was created using version Rust 0.8 and will only compile if you are running the same version on our machine.  To play the Rust version, run the following commands in the terminal in the /finalProject directory:
 
 - make
   
-* rustc ./hang
+- ./hang
 
 The HTML version of the game is run using a file URI scheme.  The web address will depend on where you cloned our directory to.  To play the web version of the game, enter the following in your browser window: 
 
