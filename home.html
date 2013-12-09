@@ -20,8 +20,8 @@
                     <div class="col_1">  
                       
                         <ul class="col_1">  
-                            <li><a href="file:///home/student/finalProject/normalsingleplayer.html">Normal</a></li>  
-                            <li><a href="file:///home/student/finalProject/difficultsingleplayer.html">Difficult</a></li>  
+                            <li><a href="./normalsingleplayer.html">Normal</a></li>  
+                            <li><a href="./difficultsingleplayer.html">Difficult</a></li>  
                         </ul>     
                            
                     </div>  
@@ -37,12 +37,14 @@
                     <div class="col_1">  
                       
                         <ul class="simple">  
-                            <li><a href="file:///home/student/finalProject/versestwoplayer.html"">Verses</a></li>  
+                            <li><a href="./versestwoplayer.html"">Verses Normal</a></li>  
+			    <li><a href="./versestwoplayerdifficult.html">Verses Difficult</a></li>
                         </ul>     
                     </div>    
             </div>  
         </li>         
         </li>
+	<li class="menu_right"><a onclick="getInstructions()" class = "simple"> Instructions </a></li>
     </ul> 
     <div class="clear"></div></div>
  <div class="hang"><br>
@@ -50,9 +52,14 @@
         <hr><hr>
         <div class="clear"></div></div>
   <div>
- <p style="text-align:center"><img src="file:///home/student/finalProject/hang.jpg" alt="WELCOME_IMAGE"></p>
+ <p style="text-align:center"><img src="./hang.jpg" alt="WELCOME_IMAGE"></p>
 </div>
 
+<script>
+	function getInstructions(){
+	alert("For single player games, view the options from the single player tab.\n\nFor two player games, view the options from the multiplayer tab.\n\nIn either game style, the skill level is either normal or difficult.\n\nThe difficult skill level has harder words and gives the player less guesses.\n\nEnjoy!");
+	}
+</script>
  
 </body>
    <footer class="footer"><hr>

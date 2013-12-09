@@ -33,12 +33,14 @@
                     <div class="col_1">  
                       
                         <ul class="simple">  
-                            <li><a href="./versestwoplayer.html"">Verses</a></li>  
+                            <li><a href="./versestwoplayer.html"">Verses Normal</a></li>
+			    <li><a href="./versestwoplayerdifficult.html">Verses Difficult</a></li>  
                         </ul>     
                     </div>    
             </div>  
         </li>         
         </li>
+	<li class="menu_right"><a onclick="getInstructions()" class = "simple"> Instructions </a></li>
     </ul> 
     <div class="clear"></div></div>
  <div class="hang"><br>
@@ -65,6 +67,9 @@
 
     <script>
         
+	function getInstructions(){
+	alert("Type a letter into the text box to make a guess.\n\nClick the Submit button to enter the guess.\n\nWin the game by determining the word before running out of guesses.\n\n Enjoy!");
+	}
         
         function setWord() {
         var nnum = Math.round(Math.random()* actualx.length) + 1;
@@ -161,7 +166,7 @@
         }
 
         function replaceImage(){
-                var picNumber = 8 - xremGuesses;
+                var picNumber = 7 - xremGuesses;
                 var path = "./hang_" + picNumber + ".jpg";
                 hangmanImg.src = path
         }
@@ -216,7 +221,7 @@
         var docBlankID=document.getElementById("blanksleft");
         var guesses = new Array();
         var blanks = new Array();
-        var xremGuesses = 7;
+        var xremGuesses = 6;
         var currentBlank = docBlankID.textContent;
         var hangmanImg = document.getElementById("hangImage");
         setWord();

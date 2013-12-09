@@ -89,7 +89,7 @@
 
      </div>
 
-<script src = "n_words2.js" > </script>
+<script src = "x_words.js" > </script>
 
 
     
@@ -101,9 +101,9 @@
 	}
         
         function setWord1() {
-        var nnum = Math.round(Math.random()* actualn.length) + 1;
+        var nnum = Math.round(Math.random()* actualx.length) + 1;
         
-        chosenWord1 = actualn[nnum];
+        chosenWord1 = actualx[nnum];
         
         }
         //show initial blanks _ _
@@ -194,7 +194,7 @@
         }
 
         function replaceImage1(){
-                var picNumber = 8 - remGuesses1 + 2;
+                var picNumber = 7 - remGuesses1;
                 var path = "./hang_" + picNumber + ".jpg";
                 hangmanImg1.src = path
         }
@@ -327,9 +327,9 @@
         
 
 	function setWord2() {
-        var nnum = Math.round(Math.random()* actualn.length) + 1;
+        var nnum = Math.round(Math.random()* actualx.length) + 1;
         
-        chosenWord2 = actualn[nnum];
+        chosenWord2 = actualx[nnum];
         
         }
         //show initial blanks _ _
@@ -389,7 +389,7 @@
         }
 
         function replaceImage2(){
-                var picNumber = 8 - remGuesses2 + 2;
+                var picNumber = 7 - remGuesses2;
                 var path = "./hang_" + picNumber + ".jpg";
                 hangmanImg2.src = path
         }
@@ -524,7 +524,7 @@
         var docBlankID1=document.getElementById("blanksleft1");
         var guesses1 = new Array();
         var blanks1 = new Array();
-        var remGuesses1 = 9;
+        var remGuesses1 = 6;
         var currentBlank1 = docBlankID1.textContent;
         var hangmanImg1 = document.getElementById("hangImage1");
 	var hint1 = document.getElementById("userInput1");
@@ -537,7 +537,7 @@
         var docBlankID2=document.getElementById("blanksleft2");
         var guesses2 = new Array();
         var blanks2 = new Array();
-        var remGuesses2 = 9;
+        var remGuesses2 = 6;
         var currentBlank2 = docBlankID1.textContent;
         var hangmanImg2 = document.getElementById("hangImage2");
 	var hint2 = document.getElementById("userInput2");

@@ -33,12 +33,14 @@
                     <div class="col_1">
                       
                         <ul class="simple">
-                            <li><a href="./versestwoplayer.html"">Verses</a></li>
+                            <li><a href="./versestwoplayer.html"">Verses Normal</a></li>
+			    <li><a href="./versestwoplayerdifficult.html">Verses Difficult</a></li>
                         </ul>
                     </div>
             </div>
         </li>
         </li>
+	<li class="menu_right"><a onclick="getInstructions()" class = "simple"> Instructions </a></li>
     </ul>
     <div class="clear"></div></div>
  <div class="hang"><br>
@@ -65,6 +67,9 @@
 
     <script>
         
+	function getInstructions(){
+	alert("Type a letter into the text box to make a guess.\n\nClick the Submit button to enter the guess.\n\nWin the game by determining the word before running out of guesses.\n\n Enjoy!");
+	}
         
         function setWord() {
         var nnum = Math.round(Math.random()* actualn.length) + 1;
