@@ -70,8 +70,7 @@
         var nnum = Math.round(Math.random()* actualn.length) + 1;
         
         chosenWord = actualn[nnum];
-        //alert(chosenWord);
-        wordSelected = true;
+        
         }
         //show initial blanks _ _
         function initialize() {
@@ -108,6 +107,15 @@
           return true;
 
         }
+
+	function allowAlphabet(input){
+               if (!input.match(/^[a-zA-Z]+$/) && input.value !="")
+               {
+                   	
+			return false;
+               }
+		return true;
+	}  
 
         //checks if letter is contained in word, also called the function to update blanks
         function wordContains(aGuess){
@@ -169,15 +177,16 @@
                 document.getElementById("userInput").value = "";
 
                 if (remGuesses > 0){
-                        
-                        if(!duplicate(guesses, currentGuess)){
+                        if(!allowAlphabet(currentGuess)){
+				divGuesses.textContent = "Guess a valid letter, your previous guesses are: " + guesses;
+                        }else if(!duplicate(guesses, currentGuess)){
                                  
                                 wordContains(currentGuess);
                                 currentBlank = docBlankID.textContent;
                                 if (win()){
                                         remGuesses = 0;
                                         docBlankID.textContent = "CONGRATULATIONS!";
-                                        divGuesses.textContent = "";
+                                        divGuesses.textContent = "The word was " + chosenWord ;
 
                                 }else if (lose()){
                                         remGuesses = 0;

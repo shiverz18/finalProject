@@ -133,9 +133,19 @@
           if (e.keyCode) code = e.keyCode;
           else if (e.which) code = e.which;
           if ((code >= 48) && (code <= 57)) { return false; }
+	  
           return true;
 
         }
+		
+	function allowAlphabet(input){
+               if (!input.match(/^[a-zA-Z]+$/) && input.value !="")
+               {
+                   	
+			return false;
+               }
+		return true;
+	}   
 
         //checks if letter is contained in word, also called the function to update blanks
         function wordContains1(aGuess){
@@ -201,8 +211,9 @@
                 document.getElementById("userInput1").value = "";
 
                 if (remGuesses1 > 0){
-                        
-                        if(!duplicate(guesses1, currentGuess)){
+                        if(!allowAlphabet(currentGuess)){
+				divGuesses.textContent = "Guess a valid letter, your previous guesses are: " + guesses1;
+                        }else if(!duplicate(guesses1, currentGuess)){
                                  
                                 wordContains1(currentGuess);
                                 currentBlank1 = docBlankID1.textContent;
@@ -393,8 +404,10 @@
                 document.getElementById("userInput2").value = "";
 
                 if (remGuesses2 > 0){
-                        
-                        if(!duplicate(guesses2, currentGuess)){
+
+                        if(!allowAlphabet(currentGuess)){
+				divGuesses.textContent = "Guess a valid letter, your previous guesses are: " + guesses2;
+                        }else if(!duplicate(guesses2, currentGuess)){
                                  
                                 wordContains2(currentGuess);
                                 currentBlank2 = docBlankID2.textContent;
