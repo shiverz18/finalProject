@@ -189,6 +189,10 @@
 
         //runs code when a guess is submitted
         function submission1(){
+		
+
+		if (player1turn){
+
                 var divGuesses=document.getElementById("output1a");
 		var numGuesses=document.getElementById("output1b");
                 var currentGuess=document.getElementById("userInput1").value;
@@ -203,27 +207,106 @@
                                 wordContains1(currentGuess);
                                 currentBlank1 = docBlankID1.textContent;
                                 if (win1()){
+					if (win2()){//both win
                                         remGuesses1 = 0;
-                                        docBlankID1.textContent = "CONGRATULATIONS!";
+                                        docBlankID1.textContent = "CONGRATULATIONS! Both Players Win! Your word was " + chosenWord1;
+					docBlankID2.textContent = "CONGRATULATIONS! Both Players Win! Your word was " + chosenWord2;
                                         divGuesses.textContent = "";
+					numGuesses.textContent = "";
+					player1turn = false;
+					player2turn = false;
+					hint1.placeholder = "";
+					hint2.placeholder = "";
+					}else if (lose2()){//player 1 wins, player 2 loses
+					remGuesses1 = 0;
+                                        docBlankID1.textContent = "CONGRATULATIONS, You Win! Your word was " + chosenWord1;
+					docBlankID2.textContent = "Sorry, You Lose. Your word was " + chosenWord2;
+                                        divGuesses.textContent = "";
+					numGuesses.textContent = "";
+					player1turn = false;
+					player2turn = false;
+					hint1.placeholder = "";
+					hint2.placeholder = "";
+					}else{ //player 1 wins, player 2 has one more chance
+					remGuesses1 = 0;
+					docBlankID1.textContent = "CONGRATULATIONS! You guessed the word.";
+					divGuesses.textContent = "";
+					player1turn = false;
+					player2turn = true;
+					hint1.placeholder = "Waiting for Player 2 Guess";
+					hint2.placeholder = "";
+					}
 
                                 }else if (lose1()){
-                                        remGuesses1 = 0;
-                                        docBlankID1.textContent = "SORRY YOU LOST: The Word was " + chosenWord1;
-                                        divGuesses.textContent = "Previous Guesses: " + guesses1;
-					numGuesses.textContent = "";
+					remGuesses1 = 0;
+					if (win2()){ //player 1 loses, player 2 wins
+						player1turn = false;	
+						player2turn = false;
+						docBlankID1.textContent = "Sorry, You Lose. Your word was " + chosenWord1;
+						docBlankID2.textContent = "Congratulations You Win! Your word was " + chosenWord2;
+                                        	divGuesses.textContent = "Previous Guesses: " + guesses1;
+						numGuesses.textContent = "";
+						hint1.placeholder = "";
+						hint2.placeholder = "";
+					}else if (lose2()){ //player 1 and 2 both lose
+						player1turn = false;	
+						player2turn = false;
+						docBlankID1.textContent = "Sorry, you both lost. Your word was " + chosenWord1;
+						docBlankID2.textContent = "Sorry, you both lost. Your word was " + chosenWord2;
+                                        	divGuesses.textContent = "Previous Guesses: " + guesses1;
+						numGuesses.textContent = "";
+						hint1.placeholder = "";
+						hint2.placeholder = "";
+					}else{ //player 1 out of guesses, player 2 has remaining guesses
+						player1turn = false;	
+						player2turn = true;
+						docBlankID1.textContent = "Sorry, you are out of guesses";
+                                        	divGuesses.textContent = "Previous Guesses: " + guesses1;
+						numGuesses.textContent = "";
+						hint1.placeholder = "Waiting for Player 2 Guess";
+						hint2.placeholder = "";
+					}
+                                        			
                                 }else{
-                                        guesses1[guesses1.length]= currentGuess;
-                                        divGuesses.textContent = "Previous Guesses: " + guesses1;
-					numGuesses.textContent = "(Lives Remaining: " + remGuesses1 + ")";
+					if (win2()){ //player 2 wins, player 1 loses
+						player1turn = false;
+						player2turn = false;
+						docBlankID1.textContext = "Sorry, You Lose. Your word was " + chosenWord1;
+						docBlankID2.textContext = "Congratulations You Win! Your word was " + chosenWord2;
+                                        	divGuesses.textContent = "Previous Guesses: " + guesses1;
+						hint1.placeholder = "";
+						hint2.placeholder = "";
+						
+					}else if (lose2()){ //player 1 has guesses left, player 2 is out of guesses
+						guesses1[guesses1.length]= currentGuess;
+						docBlankID2.textContext = "Sorry, you are out of guesses";
+                                        	divGuesses.textContent = "Previous Guesses: " + guesses1;
+						numGuesses.textContent = "(Lives Remaining: " + remGuesses1 + ")";
+						player1turn = true;
+						player2turn = false;
+						hint1.placeholder = "";
+						hint2.placeholder = "Waiting for Player 1 Guess";
+					}else{ //player 2 gets its turn, both players in play
+						guesses1[guesses1.length]= currentGuess;
+                                        	divGuesses.textContent = "Previous Guesses: " + guesses1;
+						numGuesses.textContent = "(Lives Remaining: " + remGuesses1 + ")";
+						player1turn = false;
+						player2turn = true;
+						hint1.placeholder = "Waiting for Player 2 Guess";
+						hint2.placeholder = "";
+					}
+                                        
                                 }
                                 
+				
                         }else{
                                 divGuesses.textContent = "You already guessed this letter, your previous guesses are: " + guesses1;
                                 
                         }
 
                 }
+		}else{
+		}
             }
         
 
@@ -300,6 +383,8 @@
 
         //runs code when a guess is submitted
         function submission2(){
+
+		if (player2turn) {
                 var divGuesses=document.getElementById("output2a");
 		var numGuesses=document.getElementById("output2b");
                 var currentGuess=document.getElementById("userInput2").value;
@@ -314,19 +399,90 @@
                                 wordContains2(currentGuess);
                                 currentBlank2 = docBlankID2.textContent;
                                 if (win2()){
-                                        remGuesses2 = 0;
-                                        docBlankID2.textContent = "CONGRATULATIONS!";
-                                        divGuesses.textContent = "";
+					remGuesses2 = 0;
+					if (win1()){ //both players win
+						docBlankID1.textContent = "CONGRATULATIONS! Both Players Win! Your word was " + chosenWord1;
+						docBlankID2.textContent = "CONGRATULATIONS! Both Players Win! Your word was " + chosenWord2;
+						divGuesses.textContent = "";
+						numGuesses.textContent = "";
+						player1turn = false;
+						player2turn = false;
+						hint1.placeholder = "";
+						hint2.placeholder = "";
+					}else{ //player 2 wins
+						player1turn = false;
+						player2turn = false;
+						docBlankID1.textContent = "Sorry, You Lose. Your word was " + chosenWord1;
+						docBlankID2.textContent = "Congratulations You Win! Your word was " + chosenWord2;
+                                        	divGuesses.textContent = "";
+						numGuesses.textContent = "";
+						hint1.placeholder = "";
+						hint2.placeholder = "";
+					}
+                                        
+                                        
 
                                 }else if (lose2()){
                                         remGuesses2 = 0;
-                                        docBlankID2.textContent = "SORRY YOU LOST: The Word was " + chosenWord2;
-                                        divGuesses.textContent = "Previous Guesses: " + guesses2;
-					numGuesses.textContent = "";
-                                }else{
-                                        guesses2[guesses2.length]= currentGuess;
-                                        divGuesses.textContent = "Previous Guesses: " + guesses2;
-					numGuesses.textContent = "(Lives Remaining: " + remGuesses2 + ")";
+					if (win1()){ //player 2 loses, player 1 has won
+						player1turn = false;
+						player2turn = false;
+						docBlankID1.textContent = "Congratulations You Win! Your word was " + chosenWord1;
+						docBlankID2.textContent = "Sorry, You Lose. Your word was " + chosenWord2;
+                                        	divGuesses.textContent = "Previous Guesses: " + guesses2;
+						numGuesses.textContent = "";
+						hint1.placeholder = "";
+						hint2.placeholder = "";
+						
+					}else if (lose1()){ //both have exhausted guesses, both lose
+						player2turn = false;
+						player1turn = false;
+						docBlankID1.textContent = "Sorry, you both lost. Your word was " + chosenWord1;
+                                       		docBlankID2.textContent = "Sorry, you both lost. Your word was " + chosenWord2;
+                                        	divGuesses.textContent = "Previous Guesses: " + guesses2;
+						numGuesses.textContent = "";
+						hint1.placeholder = "";
+						hint2.placeholder = "";
+	
+					}else{ //player 2 is out of guesses, player 1 still has guesses remaining
+						player2turn = false;
+						player1turn = true;
+						docBlankID2.textContent = "Sorry, you are out of guesses";
+                                        	divGuesses.textContent = "Previous Guesses: " + guesses2;
+						numGuesses.textContent = "";
+						hint1.placeholder = "";
+						hint2.placeholder = "Waiting for Player 1 Guess";
+					}
+                                }else{ 
+					if (win1()){ //player 2 lost, player 1 wins
+						player1turn = false;
+						player2turn = false;
+						guesses2[guesses2.length]= currentGuess;
+						docBlankID1.textContent = "Congratulations You Win! Your word was " + chosenWord1;
+                                       		docBlankID2.textContent = "Sorry, You Lose. Your word was " + chosenWord2;
+                                        	divGuesses.textContent = "Previous Guesses: " + guesses2;
+						numGuesses.textContent = "";
+						hint1.placeholder = "";
+						hint2.placeholder = "";
+					}else if (lose1()){ //player 1 has exhausted guesses, player 2 still has a few
+						player1turn = false;
+						player2turn = true;
+                                        	guesses2[guesses2.length]= currentGuess;
+						docBlankID1.textContent = "Sorry, you are out of guesses";
+                                        	divGuesses.textContent = "Previous Guesses: " + guesses2;
+						numGuesses.textContent = "(Lives Remaining: " + remGuesses2 + ")";
+						hint1.placeholder = "Waiting for Player 2 Guess";
+						hint2.placeholder = "";
+					}else{ //player 1 is up next, both have remaining guesses
+						player1turn = true;
+						player2turn = false;
+                                        	guesses2[guesses2.length]= currentGuess;
+                                        	divGuesses.textContent = "Previous Guesses: " + guesses2;
+						numGuesses.textContent = "(Lives Remaining: " + remGuesses2 + ")";
+						hint1.placeholder = "";
+						hint2.placeholder = "Waiting for Player 1 Guess";
+					}
+					
                                 }
                                 
                         }else{
@@ -335,6 +491,7 @@
                         }
 
                 }
+		}
             }
 
 
@@ -343,8 +500,8 @@
 
         //globals
 
-	var player1turn = true;
-        
+	var player1turn = true; 
+        var player2turn = false;
         var chosenWord1 = "";
         var docBlankID1=document.getElementById("blanksleft1");
         var guesses1 = new Array();
@@ -352,6 +509,7 @@
         var remGuesses1 = 9;
         var currentBlank1 = docBlankID1.textContent;
         var hangmanImg1 = document.getElementById("hangImage1");
+	var hint1 = document.getElementById("userInput1");
         setWord1();
         initialize1();
         document.getElementById("submitter1").addEventListener("click",submission1);
@@ -364,6 +522,8 @@
         var remGuesses2 = 9;
         var currentBlank2 = docBlankID1.textContent;
         var hangmanImg2 = document.getElementById("hangImage2");
+	var hint2 = document.getElementById("userInput2");
+	hint2.placeholder = "Waiting for Player 1 Guess";
         setWord2();
         initialize2();
         document.getElementById("submitter2").addEventListener("click",submission2);
